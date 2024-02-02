@@ -6,10 +6,26 @@ import LandingContainer from '../components/LandingContainer';
 const Home: React.FC = () => {
 
   return (
-    <Container maxWidth='md' sx={{ px: { xs: 2, md: 4 } }}>
-      <Box sx={{ my: 4 }}>
+    <Container
+      maxWidth='md'
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        px: { xs: 2, md: 4 },
+      }}
+    >
+      <Box
+        sx={{
+          my: 'auto',
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}
+      >
         <Header />
-        <LandingContainer/>
+        <LandingContainer />
         <Footer />
       </Box>
     </Container>
