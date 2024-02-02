@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Box, Container, Typography } from '@mui/material';
 import Logo from './Logo';
 import '../styles/Header.css';
 
@@ -17,10 +17,12 @@ const Header: React.FC<HeaderProps> = ({ showLogo = false }) => {
               <Logo className='header-logo' />
             </Box>
           )}
-          <div className='header-title'>
-            <span className='purple-text'>tech</span>
-            <span className='orange-text'>match</span>
-          </div>
+          <Typography variant='h4' color='secondary' fontFamily='Comfortaa' fontWeight='700'>
+            tech
+          </Typography>
+          <Typography variant='h4' color='info.main' fontFamily='Comfortaa' fontWeight='700'>
+            match
+          </Typography>
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './App.css';
 import Router from './router/Router';
 import { ThemeProvider } from '@mui/material';
 import theme from './util/MuiTheme';
