@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ showLogo = false }) => {
         <Toolbar className='header-toolbar'>
           {showLogo && (
             <Box className='header-logo-box' component='span'>
-              <img className='header-logo' alt='TechMatch Logo' src={require('../assets/logo.png')} />
+              <img className='header-logo' alt='TechMatch Logo' src={require('../assets//images/logo.png')} />
             </Box>
           )}
           <div className='header-title'>
