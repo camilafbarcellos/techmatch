@@ -3,8 +3,15 @@ import { Box, Container, Typography } from '@mui/material';
 import Logo from './Logo';
 import Button from './Button';
 import '../styles/Container.css';
+import { useNavigate } from 'react-router-dom';
 
 const LandingContainer: React.FC = () => {
+    const navigate = useNavigate();
+
+    const handleStartQuiz = () => {
+        navigate('/quiz');
+    };
+
     return (
         <Container sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Box sx={{ textAlign: 'center', mt: 4 }}>
@@ -20,7 +27,7 @@ const LandingContainer: React.FC = () => {
                     Será que a TI é a sua praia? A falta de afinidade com a área pode até mesmo levar à evasão! Faça o teste e
                     descubra se você tem o perfil ideal para seguir essa carreira!
                 </Typography>
-                <Button text={'Começar'} />
+                <Button text={'Começar'} onClick={handleStartQuiz} />
             </Box>
         </Container>
     );
