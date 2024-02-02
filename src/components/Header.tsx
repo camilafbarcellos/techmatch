@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Box, Container, Typography } from '@mui/material';
+import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 import Logo from './Logo';
 import '../styles/Header.css';
 
@@ -10,8 +10,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ showLogo = false }) => {
   return (
     <AppBar position='static' sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
-      <Container className='header-container'>
-        <Toolbar className='header-toolbar'>
+      <Toolbar className='header-toolbar'>
           {showLogo && (
             <Box className='header-logo-box' component='span'>
               <Logo className='header-logo' />
@@ -24,7 +23,6 @@ const Header: React.FC<HeaderProps> = ({ showLogo = false }) => {
             match
           </Typography>
         </Toolbar>
-      </Container>
     </AppBar>
   );
 };
