@@ -1,10 +1,10 @@
 import * as React from 'react';
 import './App.css';
-import Home from './pages/Home';
+import Router from './router/Router';
 
 const App: React.FC = () => {
   return (
-    <Home/>
+    <Router/>
   );
 };
 
