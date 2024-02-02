@@ -1,14 +1,11 @@
 import React from 'react';
 import { Box, Link } from '@mui/material';
-import '../styles/Footer.css';
 
 const Footer: React.FC = () => {
   return (
     <Box sx={{ textAlign: 'center', mt: 4, pb: 2 }}>
-      <Link className='footer-link' href='https://br.linkedin.com/in/camilafbarcellos'>
-        <div className='footer-text'>
-          &copy; {new Date().getFullYear()} Camila Barcellos
-        </div>
+      <Link href='https://br.linkedin.com/in/camilafbarcellos' variant='body2' color='primary.light' underline='none' target='_blank'>
+        &copy; {new Date().getFullYear()} Camila Barcellos
       </Link>
     </Box>
   );
