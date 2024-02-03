@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Logo from './Logo';
 import Button from './Button';
-import '../styles/Container.css';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Container.css';
 
 const LandingContainer: React.FC = () => {
     const navigate = useNavigate();
@@ -13,9 +13,9 @@ const LandingContainer: React.FC = () => {
     };
 
     return (
-        <Container sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Container className='main-component-container '>
             <Box sx={{ textAlign: 'center', mt: 4 }}>
-                <Box className='container-logo-box' component='span' sx={{ width: '3.2rem', height: '3rem' }}>
+                <Box component='span' sx={{ alignItems: 'center', width: '3.2rem', height: '3rem' }}>
                     <Logo className='container-logo' />
                 </Box>
                 <Typography variant='h4' fontFamily='Comfortaa' fontWeight='700' component='div' sx={{ mt: 2 }}>
