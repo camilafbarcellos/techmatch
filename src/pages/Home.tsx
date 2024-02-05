@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          gap: '-5rem'
+          alignItems: 'center'
         }}
       >
         <TextField title={title} text={text} handleButton={handleButton}/>
