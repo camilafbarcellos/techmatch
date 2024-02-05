@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 import Logo from './Logo';
-import '../styles/Header.css';
+import '../assets/styles/components.css';
 
 interface HeaderProps {
   showLogo?: boolean;

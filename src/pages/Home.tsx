@@ -1,9 +1,12 @@
 import { Box, Container } from '@mui/material';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import LandingContainer from '../components/LandingContainer';
+import TextField from '../components/TextField';
 
 const Home: React.FC = () => {
+
+  const title: string = 'Você dá match com a Computação?';
+  const text: string = 'Será que a TI é a sua praia? A falta de afinidade com a área pode até mesmo levar à evasão! Faça o teste e descubra se você tem o perfil ideal para seguir essa carreira!';
 
   return (
     <Container
@@ -25,7 +28,7 @@ const Home: React.FC = () => {
         }}
       >
         <Header />
-        <LandingContainer />
+        <TextField title={title} text={text} />
         <Footer />
       </Box>
     </Container>
