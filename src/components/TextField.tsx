@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Logo from './Logo';
-import Button from './Button';
+import NavigationButton from './NavigationButton';
 import '../assets/styles/logo.css';
 
 interface TextFieldProps {
@@ -35,7 +35,7 @@ const TextWithField: React.FC<TextFieldProps> = ({ logo = true, title, text, han
                 <Typography variant='body1' color='primary.light' sx={{ mt: 2 }}>
                     {`${text}`}
                 </Typography>
-                <Button text={'Começar'} onClick={handleButton} />
+                <NavigationButton text={'Começar'} onClick={handleButton} />
             </Box>
         </Container>
     );

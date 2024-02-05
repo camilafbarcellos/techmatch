@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import TextField from '../components/TextWithButton';
+import TextField from '../components//TextField';
 import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -24,19 +24,20 @@ const Home: React.FC = () => {
         px: { xs: 2, md: 4 },
       }}
     >
+      <Header />
       <Box
         sx={{
           my: 'auto',
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          gap: '-5rem'
         }}
       >
-        <Header />
-        <TextField title={title} text={text} handleButton={handleButton} />
-        <Footer />
+        <TextField title={title} text={text} handleButton={handleButton}/>
       </Box>
+      <Footer />
     </Container>
   );
 };
