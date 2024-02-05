@@ -14,7 +14,10 @@ const theme = createTheme({
         info: {
             main: '#FE7E15',
             light: '#fee5d0'
-        }
+        },
+        background: {
+            paper: '#F8F9FA'
+        },
     },
     typography: {
         fontFamily: ['Poppins', 'Roboto', 'sans-serif', 'Arial'].join(','),
