@@ -18,24 +18,19 @@ const Home: React.FC = () => {
     <Container
       maxWidth='md'
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
-        px: { xs: 2, md: 4 },
+        display: 'flex', flexDirection: 'column',
+        minHeight: '100vh', px: { xs: 2, md: 4 },
       }}
     >
       <Header />
       <Box
         sx={{
-          my: 'auto',
-          flexGrow: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
+          my: 'auto', flexGrow: 1,
+          display: 'flex', flexDirection: 'column',
+          justifyContent: 'center', alignItems: 'center'
         }}
       >
-        <TextField title={title} text={text} handleButton={handleButton}/>
+        <TextField title={title} text={text} handleButton={handleButton} />
       </Box>
       <Footer />
     </Container>
