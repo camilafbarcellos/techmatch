@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 import Logo from './Logo';
-import '../assets/styles/components.css';
+import '../assets/styles/logo.css';
 
 interface HeaderProps {
   showLogo?: boolean;
@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ showLogo = false }) => {
   return (
     <AppBar position='static' sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
-      <Toolbar className='header-toolbar'>
+      <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {showLogo && (
           <Box component='span' sx={{ alignItems: 'center' }}>
             <Logo className='header-logo' />

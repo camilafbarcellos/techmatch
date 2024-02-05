@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Router from './router/Router';
 import { ThemeProvider } from '@mui/material';
-import theme from './util/MuiTheme';
+import theme from './utils/MuiTheme';
 
 const App: React.FC = () => {
   return (
