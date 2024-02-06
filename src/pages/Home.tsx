@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import TextField from '../components//TextField';
+import TextWithLogo from '../components/TextWithLogo';
 import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
           justifyContent: 'center', alignItems: 'center'
         }}
       >
-        <TextField title={title} text={text} handleButton={handleButton} />
+        <TextWithLogo title={title} text={text} handleButton={handleButton} />
       </Box>
       <Footer />
     </Container>

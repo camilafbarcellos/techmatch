@@ -8,7 +8,7 @@ interface NavigationButtonProps {
 
 const NavigationButton: React.FC<NavigationButtonProps> = ({ text, onClick }) => {
   return (
-    <Box sx={{ textAlign: 'center', mt: 4, pb: 2 }}>
+    <Box sx={{ textAlign: 'center' }}>
       <Button variant='contained' color='secondary' onClick={onClick}>
         {`${text}`}
       </Button>
