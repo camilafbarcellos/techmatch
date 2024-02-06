@@ -16,7 +16,7 @@ const Dot = styled('div')(({ theme }) => ({
 
 const PaginationDots: React.FC<PaginationDotsProps> = ({ totalDots, currentDot }) => {
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             {[...Array(totalDots)].map((_, index) => (
                 <Dot key={index} style={{ opacity: currentDot === index ? 1 : 0.5 }} />
             ))}

@@ -8,7 +8,7 @@ interface QuestionCardProps {
 
 const QuestionCard: React.FC<QuestionCardProps> = ({ question }) => {
     return (
-        <Box sx={{ textAlign: 'center', width: '75%', mt: 4 }}>
+        <Box sx={{ textAlign: 'center', width: '75%' }}>
             <Card variant='outlined'>
                 <CardContent sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: '1rem' }}>
                     <QuoteIcon color='disabled' sx={{justifyContent: 'flex-start'}} />

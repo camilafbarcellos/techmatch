@@ -75,7 +75,7 @@ const LikertScale: React.FC<LikertScaleProps> = ({ selectedScale, onScaleSelect 
   };
 
   return (
-    <Box sx={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center', mt: 4 }}>
+    <Box sx={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <StyledRating
         name='likert-scale'
         value={selectedValue}

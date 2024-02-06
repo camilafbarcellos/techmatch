@@ -8,7 +8,7 @@ interface NextButtonProps {
 
 const NextButton: React.FC<NextButtonProps> = ({ onClick, isLastQuestion }) => {
   return (
-    <Box sx={{ textAlign: 'center', mt: 4, pb: 2 }}>
+    <Box sx={{ textAlign: 'center' }}>
       <Button variant='contained' color='secondary' onClick={onClick}>
         {isLastQuestion ? 'Finalizar' : 'Avançar'}
       </Button>
