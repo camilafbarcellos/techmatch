@@ -1,36 +1,40 @@
-import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export const axiosRequest = async (endpoint: string, method: string, body?: any, token?: any) => {
+interface AxiosRequestProps {
+    endpoint: string;
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+    body?: any;
+    token?: string;
+}
 
+export const axiosRequest = async ({ endpoint, method, body, token }: AxiosRequestProps) => {
     try {
-        const headers = new AxiosHeaders();
-        headers.setContentType('application/json; charset=utf-8');
-        headers.setAccept('*/*');
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+        };
+
         if (token) {
-            headers.setAuthorization('Bearer ' + token);
+            headers.Authorization = `Bearer ${token}`;
         }
 
-        const API_URL: string =  process.env.REACT_APP_API_URL as string;        
+        const API_URL: string = process.env.REACT_APP_API_URL as string;
 
         const config: AxiosRequestConfig = {
-            method: method,
-            url: API_URL + endpoint,
+            method,
+            url: `${API_URL}${endpoint}`,
             data: body,
-            headers: headers
-        }        
+            headers,
+        };
 
         const response = await axios(config);
-        console.log(response);
-
-        const data = await response.data;
+        const data = response.data;
         const status = response.status;
 
-        return { response: response, data: data, status: status };
-
+        return { response, data, status };
     } catch (error: any) {
         console.log(error);
 
-        return { error: error, code: error.code };
+        return { error, code: error.code };
     }
-
-}
+};
