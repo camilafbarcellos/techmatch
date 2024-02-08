@@ -1,4 +1,4 @@
 export type Question = {
-    category: string,
-    question: string
+    category: string;
+    question: string;
 }
