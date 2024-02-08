@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/system';
 import Rating, { IconContainerProps } from '@mui/material/Rating';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
@@ -73,6 +73,11 @@ const LikertScale: React.FC<LikertScaleProps> = ({ selectedScale, onScaleSelect 
     setSelectedValue(newValue);
     onScaleSelect(newValue || 0); // If null, turns into 0
   };
+
+  useEffect(() => {
+    // Update the selected value when the selectedScale prop changes
+    setSelectedValue(selectedScale);
+  }, [selectedScale]);
 
   return (
     <Box sx={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
