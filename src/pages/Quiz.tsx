@@ -8,11 +8,7 @@ import NextButton from '../components/NextButton';
 import Footer from '../components/Footer';
 import { axiosRequest } from '../utils/axiosRequest';
 import LoadingCircle from '../components/LoadingCircle';
-
-interface Question {
-  category: string;
-  question: string;
-}
+import { Question } from '../types/question';
 
 const Quiz: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
