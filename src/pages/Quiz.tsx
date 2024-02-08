@@ -9,11 +9,14 @@ import Footer from '../components/Footer';
 import { axiosRequest } from '../utils/axiosRequest';
 import LoadingCircle from '../components/LoadingCircle';
 import { Question } from '../types/question';
+import { Answer } from '../types/answer';
+import { filterAnswersByCategory } from '../utils/filterAnswersByCategory';
 
 const Quiz: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [selectedScale, setSelectedScale] = useState<number | null>(null);
+  const [answers, setAnswers] = useState<Answer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchData = async () => {
@@ -32,10 +35,18 @@ const Quiz: React.FC = () => {
     // Skip to next question or finish the quiz
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      // Add the answer to the array
+      const updatedAnswers = [...answers];
+      updatedAnswers[currentQuestionIndex] = {
+        category: questions[currentQuestionIndex].category,
+        result: selectedScale as number,
+      };
+      setAnswers(updatedAnswers);
       setSelectedScale(null); // Reset scale for the next question
     } else {
       // End of the quiz (link to results page)
       alert('QUIZ FINALIZADO!')
+      console.log(filterAnswersByCategory(answers)); // Send the answers to the calculation module
     }
   }
 
