@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Alert, Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
 import PaginationDots from '../components/PaginationDots';
@@ -18,6 +18,8 @@ const Quiz: React.FC = () => {
   const [selectedScale, setSelectedScale] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [scaleAnswered, setScaleAnswered] = useState<boolean>(false);
+  const [scaleWarning, setScaleWarning] = useState<boolean>(false);
 
   const fetchData = async () => {
     try {
@@ -31,10 +33,25 @@ const Quiz: React.FC = () => {
     }
   }
 
+  const handleScaleSelect = (scale: number) => {
+    setSelectedScale(scale);
+    !scale ? setScaleAnswered(false) : setScaleAnswered(true);
+  };
+
   const handleNextClick = () => {
+    // If scale is not answered, display warning message and prevent advancing to the next question
+    if (!scaleAnswered) {
+      setScaleWarning(true);
+      return;
+    }
+
     // Skip to next question or finish the quiz
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedScale(null); // Reset scale for the next question
+      setScaleAnswered(false); // Reset answer status for the next question
+      setScaleWarning(false); // Hide warning message
+
       // Add the answer to the array
       const updatedAnswers = [...answers];
       updatedAnswers[currentQuestionIndex] = {
@@ -42,7 +59,6 @@ const Quiz: React.FC = () => {
         result: selectedScale as number,
       };
       setAnswers(updatedAnswers);
-      setSelectedScale(null); // Reset scale for the next question
     } else {
       // End of the quiz (link to results page)
       alert('QUIZ FINALIZADO!')
@@ -54,7 +70,7 @@ const Quiz: React.FC = () => {
     // TO-DO: don't fetch data all the time, first check if it is already fetched
     fetchData();
 
-  }, [selectedScale]);
+  }, []);
 
   return (
     <Container
@@ -78,12 +94,15 @@ const Quiz: React.FC = () => {
           <>
             <PaginationDots totalDots={questions.length} currentDot={currentQuestionIndex} />
             <QuestionCard question={questions[currentQuestionIndex].question} />
-            <LikertScale selectedScale={selectedScale} onScaleSelect={(scale) => setSelectedScale(scale)} />
+            <LikertScale selectedScale={selectedScale} onScaleSelect={handleScaleSelect} />
 
             <Typography variant='body2' color='primary.light' sx={{ textAlign: 'center', width: '75%' }}>
               Responda de acordo com o seu grau de concordância com o que foi exposto. Lembre-se de ser sincero para um melhor resultado. <br />
               <strong>Atenção: </strong> não é possível  retornar às respostas anteriores!
             </Typography>
+            {scaleWarning && (
+              <Alert severity='error'>Selecione uma alternativa antes de prosseguir!</Alert>
+            )}
             <NextButton onClick={handleNextClick} isLastQuestion={currentQuestionIndex === questions.length - 1} />
           </>
         )}
