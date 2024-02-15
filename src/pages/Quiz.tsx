@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
@@ -20,17 +20,34 @@ const Quiz: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [scaleWarning, setScaleWarning] = useState<boolean>(false);
 
-  const fetchData = async () => {
+  // Function to fetch questions data from the API and handle API errors
+  const fetchData = useCallback(async () => {
     try {
       const { data } = await axiosRequest({ endpoint: 'questions', method: 'GET' });
-      setQuestions(data);
-      setLoading(false); // Set loading to false after fetching data
+      return data; // Returns the fetched data
     } catch (error) {
-      // TO-DO: deal with the error
-      alert('Ocorreu um erro ao buscar as perguntas.');
-      setLoading(false); // Set loading to false if there's an error
+      // TO-DO: Handle the error appropriately
+      alert('An error occurred while fetching the questions.'); // Alert the user about the error
+      return []; // Return an empty array in case of error
     }
-  }
+  }, []);
+
+  // Memoized value to store the fetched questions data
+  const memoQuestions = useMemo(() => {
+    return fetchData(); // Returns the result of the fetchData function
+  }, [fetchData]); // Dependency array to ensure this memoization runs when fetchData changes
+
+  // Effect to update the questions state and loading status when memoQuestions changes
+  useEffect(() => {
+    memoQuestions.then((data: Question[]) => {
+      // Checks if there's data available (in case of error, data would be an empty array)
+      if (data.length > 0) {
+        setQuestions(data); // Update the questions state with the fetched data
+        setLoading(false); // Set loading status to false after data is fetched
+      }
+    });
+  }, [memoQuestions]); // Dependency array to run this effect when memoQuestions changes
+
 
   const handleScaleSelect = (scale: number) => {
     setSelectedScale(scale);
@@ -57,19 +74,13 @@ const Quiz: React.FC = () => {
       setSelectedScale(null); // Reset scale for the next question
       setScaleWarning(false); // Hide warning message
 
-      
+
     } else {
       // End of the quiz (link to results page)
       alert('QUIZ FINALIZADO!')
       console.log(filterAnswersByCategory(answers)); // Send the answers to the calculation module
     }
   }
-
-  useEffect(() => {
-    // TO-DO: don't fetch data all the time, first check if it is already fetched
-    fetchData();
-
-  }, []);
 
   return (
     <Container
