@@ -18,7 +18,6 @@ const Quiz: React.FC = () => {
   const [selectedScale, setSelectedScale] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [scaleAnswered, setScaleAnswered] = useState<boolean>(false);
   const [scaleWarning, setScaleWarning] = useState<boolean>(false);
 
   const fetchData = async () => {
@@ -35,30 +34,30 @@ const Quiz: React.FC = () => {
 
   const handleScaleSelect = (scale: number) => {
     setSelectedScale(scale);
-    !scale ? setScaleAnswered(false) : setScaleAnswered(true);
   };
 
   const handleNextClick = () => {
     // If scale is not answered, display warning message and prevent advancing to the next question
-    if (!scaleAnswered) {
+    if (!selectedScale) {
       setScaleWarning(true);
       return;
     }
+
+    // Add the answer to the array
+    const updatedAnswers = [...answers];
+    updatedAnswers[currentQuestionIndex] = {
+      category: questions[currentQuestionIndex].category,
+      result: selectedScale as number,
+    };
+    setAnswers(updatedAnswers);
 
     // Skip to next question or finish the quiz
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedScale(null); // Reset scale for the next question
-      setScaleAnswered(false); // Reset answer status for the next question
       setScaleWarning(false); // Hide warning message
 
-      // Add the answer to the array
-      const updatedAnswers = [...answers];
-      updatedAnswers[currentQuestionIndex] = {
-        category: questions[currentQuestionIndex].category,
-        result: selectedScale as number,
-      };
-      setAnswers(updatedAnswers);
+      
     } else {
       // End of the quiz (link to results page)
       alert('QUIZ FINALIZADO!')
