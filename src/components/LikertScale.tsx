@@ -1,95 +1,61 @@
 import React, { useEffect, useState } from 'react';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
-import Rating, { IconContainerProps } from '@mui/material/Rating';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
-import { Box, Typography } from '@mui/material';
 
-const StyledRating = styled(Rating)(({ theme }) => ({
-  '& .MuiRating-icon': {
-    marginLeft: theme.spacing(2.5),
-    marginRight: theme.spacing(2.5),
-  },
-  '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
-    color: theme.palette.action.disabled,
-  },
-  '.MuiSvgIcon-fontSizeMedium': {
-    fontSize: '2.2rem',
-  },
-}));
-
-const customIcons: {
-  [index: string]: {
-    icon: React.ReactElement;
-    label: string;
-  };
-} = {
-  1: {
-    icon: <SentimentVeryDissatisfiedIcon color='error' />,
-    label: 'Discordo totalmente',
-  },
-  2: {
-    icon: <SentimentDissatisfiedIcon color='error' />,
-    label: 'Discordo parcialmente',
-  },
-  3: {
-    icon: <SentimentSatisfiedIcon color='warning' />,
-    label: 'Não concordo, nem discordo',
-  },
-  4: {
-    icon: <SentimentSatisfiedAltIcon color='success' />,
-    label: 'Concordo parcialmente',
-  },
-  5: {
-    icon: <SentimentVerySatisfiedIcon color='success' />,
-    label: 'Concordo totalmente',
-  },
-};
-
-function IconContainer(props: IconContainerProps) {
-  const { value, ...other } = props;
-  return (
-    <span {...other}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '0.5rem' }}>
-        {customIcons[value].icon}
-        <Typography variant='body2' color='textSecondary'>{customIcons[value].label}</Typography>
-      </Box>
-    </span>
-  );
-}
+const LikertItem = styled(Box)({
+    textAlign: 'center',
+    '& button': {
+        borderRadius: '50%', width: '2.25rem', height: '2.25rem',
+        minWidth: 'auto',
+    },
+});
 
 interface LikertScaleProps {
-  selectedScale: number | null;
-  onScaleSelect: (scale: number) => void;
+    onChange: (value: number) => void;
+    selectedScale: number | null;
 }
 
-const LikertScale: React.FC<LikertScaleProps> = ({ selectedScale, onScaleSelect }) => {
-  const [selectedValue, setSelectedValue] = useState<number | null>(selectedScale);
+const LikertScale: React.FC<LikertScaleProps> = ({ onChange, selectedScale }) => {
+    const [selectedValue, setSelectedValue] = useState<number | null>(selectedScale);
+    const theme = useTheme();
 
-  const handleScaleSelect = (event: React.ChangeEvent<{}>, newValue: number | null) => {
-    setSelectedValue(newValue);
-    onScaleSelect(newValue || 0); // If null, turns into 0
-  };
+    const handleScaleSelect = (newValue: number | null) => {
+        onChange(newValue || 0); // If null, turns into 0
+        setSelectedValue(newValue);
+    };
 
-  useEffect(() => {
-    // Update the selected value when the selectedScale prop changes
-    setSelectedValue(selectedScale);
-  }, [selectedScale]);
+    useEffect(() => {
+        // Update the selected value when the selectedScale prop changes
+        setSelectedValue(selectedScale);
+    }, [selectedScale]);
 
-  return (
-    <Box sx={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center' }}>
-      <StyledRating
-        name='likert-scale'
-        value={selectedValue}
-        onChange={handleScaleSelect}
-        IconContainerComponent={IconContainer}
-        highlightSelectedOnly
-      />
-    </Box>
-  );
+    return (
+        <Box display='flex' justifyContent='center' width='75%'>
+            {[1, 2, 3, 4, 5].map((value) => (
+                <LikertItem key={value}>
+                    <Button
+                        variant='contained'
+                        className={selectedValue === value ? 'likert-button-selected' : 'likert-button'}
+                        onClick={() => handleScaleSelect(value)}
+                        sx={{
+                            backgroundColor: selectedValue === value ? theme.palette.info.main : theme.palette.info.light,
+                            '&:hover': {
+                                backgroundColor: theme.palette.info.main,
+                            },
+                        }}
+                    />
+                    <Typography variant='body2' marginTop='1rem'>
+                        {
+                            value === 1 ? 'Discordo totalmente' :
+                                value === 2 ? 'Discordo parcialmente' :
+                                    value === 3 ? 'Não concordo, nem discordo' :
+                                        value === 4 ? 'Concordo parcialmente' : 'Concordo totalmente'
+                        }
+                    </Typography>
+                </LikertItem>
+            ))}
+        </Box>
+    );
 };
 
 export default LikertScale;

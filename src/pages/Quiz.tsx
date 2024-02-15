@@ -104,7 +104,7 @@ const Quiz: React.FC = () => {
           <>
             <PaginationDots totalDots={questions.length} currentDot={currentQuestionIndex} />
             <QuestionCard question={questions[currentQuestionIndex].question} />
-            <LikertScale selectedScale={selectedScale} onScaleSelect={handleScaleSelect} />
+            <LikertScale onChange={handleScaleSelect} selectedScale={selectedScale} />
 
             <Typography variant='body2' color='primary.light' sx={{ textAlign: 'center', width: '75%' }}>
               Responda de acordo com o seu grau de concordância com o que foi exposto. Lembre-se de ser sincero para um melhor resultado. <br />
