@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 
 const LikertItem = styled(Box)({
     textAlign: 'center',
@@ -52,13 +57,22 @@ const LikertScale: React.FC<LikertScaleProps> = ({ onChange, selectedScale }) =>
                                 backgroundColor: theme.palette.info.main,
                             },
                         }}
-                    />
+                    >
+                        {
+                            value === 1 ? <SentimentVeryDissatisfiedIcon color='disabled' /> :
+                                value === 2 ? <SentimentDissatisfiedIcon color='disabled' /> :
+                                    value === 3 ? <SentimentSatisfiedIcon color='disabled' /> :
+                                        value === 4 ? <SentimentSatisfiedAltIcon color='disabled' /> :
+                                            <SentimentVerySatisfiedIcon color='disabled' />
+                        }
+                    </Button>
                     <Typography variant='body2' marginTop='1rem'>
                         {
                             value === 1 ? 'Discordo totalmente' :
                                 value === 2 ? 'Discordo em partes' :
                                     value === 3 ? 'Não concordo, nem discordo' :
-                                        value === 4 ? 'Concordo em partes' : 'Concordo totalmente'
+                                        value === 4 ? 'Concordo em partes' :
+                                            'Concordo totalmente'
                         }
                     </Typography>
                 </LikertItem>
