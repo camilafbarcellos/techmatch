@@ -5,9 +5,18 @@ import { styled } from '@mui/system';
 const LikertItem = styled(Box)({
     textAlign: 'center',
     '& button': {
-        borderRadius: '50%', width: '2.25rem', height: '2.25rem',
-        minWidth: 'auto',
-    },
+        borderRadius: '50%', minWidth: 'auto',
+        width: '2.25rem',
+        height: '2.25rem',
+        '@media (max-width:600px)': {
+            width: '2rem',
+            height: '2rem',
+        },
+        '@media (max-width:400px)': {
+            width: '1.75rem',
+            height: '1.75rem',
+        },
+    }
 });
 
 interface LikertScaleProps {
