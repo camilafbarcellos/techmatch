@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Home: React.FC = () => {
 
   const title: string = 'Você dá match com a Computação?';
-  const text: string = 'Será que a TI é a sua praia? A falta de afinidade com a área pode até mesmo levar à evasão! Faça o teste e descubra se você tem o perfil ideal para seguir essa carreira!';
+  const text: string = 'Será que a TI é a sua praia? A falta de afinidade com a área pode até mesmo levar à evasão! Faça o teste e descubra se você tem o perfil ideal para embarcar nessa carreira!';
 
   const navigate = useNavigate();
   const handleButton = () => {
