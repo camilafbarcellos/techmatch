@@ -110,7 +110,7 @@ const Quiz: React.FC = () => {
               <Alert severity='error'>Selecione uma alternativa antes de prosseguir!</Alert>
             )}
             <Typography variant='body2' color='primary.light' sx={{ textAlign: 'center', width: '75%' }}>
-              Responda de acordo com o seu grau de concordância com o que foi exposto. Lembre-se de ser sincero para um melhor resultado. <br />
+              Responda de acordo com o seu grau de concordância com o que foi exposto. <br />
               <strong>Atenção: </strong> não é possível  retornar às respostas anteriores!
             </Typography>
             <NextButton onClick={handleNextClick} isLastQuestion={currentQuestionIndex === questions.length - 1} />
