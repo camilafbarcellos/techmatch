@@ -47,9 +47,9 @@ const LikertScale: React.FC<LikertScaleProps> = ({ onChange, selectedScale }) =>
                     <Typography variant='body2' marginTop='1rem'>
                         {
                             value === 1 ? 'Discordo totalmente' :
-                                value === 2 ? 'Discordo parcialmente' :
+                                value === 2 ? 'Discordo em partes' :
                                     value === 3 ? 'Não concordo, nem discordo' :
-                                        value === 4 ? 'Concordo parcialmente' : 'Concordo totalmente'
+                                        value === 4 ? 'Concordo em partes' : 'Concordo totalmente'
                         }
                     </Typography>
                 </LikertItem>
