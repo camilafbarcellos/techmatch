@@ -11,6 +11,7 @@ import LoadingCircle from '../components/LoadingCircle';
 import { Question } from '../types/question';
 import { Answer } from '../types/answer';
 import { filterAnswersByCategory } from '../utils/filterAnswersByCategory';
+import { shuffleArray } from '../utils/shuffleArray';
 
 const Quiz: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -36,6 +37,11 @@ const Quiz: React.FC = () => {
   const memoQuestions = useMemo(() => {
     return fetchData(); // Returns the result of the fetchData function
   }, [fetchData]); // Dependency array to ensure this memoization runs when fetchData changes
+
+  // Memoized value to store the shuffled array of questions
+  const shuffledQuestions = useMemo(() => {
+    return shuffleArray(questions);
+  }, [questions]); // Dependency array to ensure this memoization runs only when questions array changes
 
   // Effect to update the questions state and loading status when memoQuestions changes
   useEffect(() => {
@@ -103,7 +109,7 @@ const Quiz: React.FC = () => {
         ) : (
           <>
             <PaginationDots totalDots={questions.length} currentDot={currentQuestionIndex} />
-            <QuestionCard question={questions[currentQuestionIndex].question} />
+            <QuestionCard question={shuffledQuestions[currentQuestionIndex].question} />
             <LikertScale onChange={handleScaleSelect} selectedScale={selectedScale} />
 
             {scaleWarning && (
