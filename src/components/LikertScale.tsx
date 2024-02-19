@@ -13,14 +13,6 @@ const LikertItem = styled(Box)({
         borderRadius: '50%', minWidth: 'auto',
         width: '2.25rem',
         height: '2.25rem',
-        '@media (max-width:600px)': {
-            width: '2rem',
-            height: '2rem',
-        },
-        '@media (max-width:400px)': {
-            width: '1.75rem',
-            height: '1.75rem',
-        },
     }
 });
 

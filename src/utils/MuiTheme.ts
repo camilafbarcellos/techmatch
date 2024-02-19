@@ -24,36 +24,6 @@ const theme = createTheme({
         button: {
             textTransform: 'none',
             fontWeight: 500,
-            '@media (max-width:600px)': {
-                fontSize: '0.75rem',
-            },
-            '@media (max-width:400px)': {
-                fontSize: '0.5rem',
-            },
-        },
-        body2: {
-            '@media (max-width:600px)': {
-                fontSize: '0.75rem',
-            },
-            '@media (max-width:400px)': {
-                fontSize: '0.5rem',
-            },
-        },
-        h6: {
-            '@media (max-width:600px)': {
-                fontSize: '1rem',
-            },
-            '@media (max-width:400px)': {
-                fontSize: '0.875rem',
-            },
-        },
-        caption: {
-            '@media (max-width:600px)': {
-                fontSize: '0.65rem',
-            },
-            '@media (max-width:400px)': {
-                fontSize: '0.5rem',
-            },
         },
     },
     shape: {
