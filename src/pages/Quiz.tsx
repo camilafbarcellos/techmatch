@@ -12,14 +12,17 @@ import { Question } from '../types/question';
 import { Answer } from '../types/answer';
 import { filterAnswersByCategory } from '../utils/filterAnswersByCategory';
 import { shuffleArray } from '../utils/shuffleArray';
+import { useNavigate } from 'react-router-dom';
 
 const Quiz: React.FC = () => {
+
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [selectedScale, setSelectedScale] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [scaleWarning, setScaleWarning] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   // Memoized function to fetch questions data from the API
   const fetchData = useCallback(async () => {
@@ -36,7 +39,7 @@ const Quiz: React.FC = () => {
   // Memoized value to store the fetched data
   const memoFetchData = useMemo(() => {
     return fetchData();
-  }, [fetchData]); 
+  }, [fetchData]);
 
   // Memoized value to store the shuffled array of questions
   const shuffledQuestions = useMemo(() => {
@@ -51,12 +54,22 @@ const Quiz: React.FC = () => {
       }
     }).finally(() => {
       setLoading(false);
-    });    
+    });
   }, [memoFetchData]);
 
   const handleScaleSelect = (scale: number) => {
     setSelectedScale(scale);
   };
+
+  // Finish the quiz when all the questions are answered
+  useEffect(() => {
+    if (answers.length === questions.length && !loading) {
+      // End of the quiz links to results page with the answers on sessionStorage
+      const answersByCategory = filterAnswersByCategory(answers);
+      sessionStorage.setItem('userAnswers', JSON.stringify(answersByCategory));
+      navigate('/results');
+    }
+  }, [answers, questions, loading, navigate]);
 
   const handleNextClick = () => {
     // If scale is not answered, display warning message and prevent advancing to the next question
@@ -73,13 +86,9 @@ const Quiz: React.FC = () => {
     };
     setAnswers(updatedAnswers);
 
-    // Skip to next question or finish the quiz
+    // Check if there's another question and then proceed
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      // End of the quiz (link to results page)
-      alert(`QUIZ FINALIZADO! \n${filterAnswersByCategory(answers)}`);
-      console.log(filterAnswersByCategory(answers)); // Send the answers to the calculation module
+      setCurrentQuestionIndex(currentQuestionIndex + 1)
     }
   }
 
