@@ -21,39 +21,38 @@ const Quiz: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [scaleWarning, setScaleWarning] = useState<boolean>(false);
 
-  // Function to fetch questions data from the API and handle API errors
+  // Memoized function to fetch questions data from the API
   const fetchData = useCallback(async () => {
     try {
       const { data } = await axiosRequest({ endpoint: 'questions', method: 'GET' });
-      return data; // Returns the fetched data
+      return data;
     } catch (error) {
       // TO-DO: Handle the error appropriately
-      alert('An error occurred while fetching the questions.'); // Alert the user about the error
-      return []; // Return an empty array in case of error
+      console.error('Error fetching questions:', error);
+      return null;
     }
   }, []);
 
-  // Memoized value to store the fetched questions data
-  const memoQuestions = useMemo(() => {
-    return fetchData(); // Returns the result of the fetchData function
-  }, [fetchData]); // Dependency array to ensure this memoization runs when fetchData changes
+  // Memoized value to store the fetched data
+  const memoFetchData = useMemo(() => {
+    return fetchData();
+  }, [fetchData]); 
 
   // Memoized value to store the shuffled array of questions
   const shuffledQuestions = useMemo(() => {
     return shuffleArray(questions);
-  }, [questions]); // Dependency array to ensure this memoization runs only when questions array changes
+  }, [questions]);
 
-  // Effect to update the questions state and loading status when memoQuestions changes
+  // Effect to update the questions state and loading status
   useEffect(() => {
-    memoQuestions.then((data: Question[]) => {
-      // Checks if there's data available (in case of error, data would be an empty array)
-      if (data.length > 0) {
-        setQuestions(data); // Update the questions state with the fetched data
-        setLoading(false); // Set loading status to false after data is fetched
+    memoFetchData.then((data: Question[]) => {
+      if (data) {
+        setQuestions(data);
       }
-    });
-  }, [memoQuestions]); // Dependency array to run this effect when memoQuestions changes
-
+    }).finally(() => {
+      setLoading(false);
+    });    
+  }, [memoFetchData]);
 
   const handleScaleSelect = (scale: number) => {
     setSelectedScale(scale);
@@ -70,23 +69,26 @@ const Quiz: React.FC = () => {
     const updatedAnswers = [...answers];
     updatedAnswers[currentQuestionIndex] = {
       category: questions[currentQuestionIndex].category,
-      result: selectedScale as number,
+      result: selectedScale,
     };
     setAnswers(updatedAnswers);
 
     // Skip to next question or finish the quiz
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedScale(null); // Reset scale for the next question
-      setScaleWarning(false); // Hide warning message
-
-
     } else {
       // End of the quiz (link to results page)
-      alert('QUIZ FINALIZADO!')
+      alert(`QUIZ FINALIZADO! \n${filterAnswersByCategory(answers)}`);
       console.log(filterAnswersByCategory(answers)); // Send the answers to the calculation module
     }
   }
+
+  // Reset selected scale and hide warning when question changes
+  useEffect(() => {
+    setSelectedScale(null);
+    setScaleWarning(false);
+  }, [currentQuestionIndex]); // Only runs this effect when currentQuestionIndex changes
+
 
   return (
     <Container
@@ -108,8 +110,8 @@ const Quiz: React.FC = () => {
           <LoadingCircle />
         ) : (
           <>
-            <PaginationDots totalDots={questions.length} currentDot={currentQuestionIndex} />
-            <QuestionCard question={shuffledQuestions[currentQuestionIndex].question} />
+            <PaginationDots totalDots={shuffledQuestions.length} currentDot={currentQuestionIndex} />
+            <QuestionCard question={questions[currentQuestionIndex].question} />
             <LikertScale onChange={handleScaleSelect} selectedScale={selectedScale} />
 
             {scaleWarning && (
