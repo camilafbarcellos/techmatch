@@ -28,4 +28,4 @@ const Header: React.FC<HeaderProps> = ({ showLogo = false }) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
