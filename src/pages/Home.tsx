@@ -18,7 +18,7 @@ const Home: React.FC = () => {
     <Container
       maxWidth='md'
       sx={{
-        display: 'flex', flexDirection: 'column', marginX: '50vh',
+        display: 'flex', flexDirection: 'column',
         minHeight: '100vh', px: { xs: 2, md: 4 },
       }}
     >
