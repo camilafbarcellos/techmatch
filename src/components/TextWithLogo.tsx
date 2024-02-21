@@ -7,10 +7,11 @@ import '../assets/styles/logo.css';
 interface TextWithLogoProps {
     title: string;
     text: string;
+    buttonAction: string;
     handleButton: () => void;
 }
 
-const TextWithLogo: React.FC<TextWithLogoProps> = ({ title, text, handleButton }) => {
+const TextWithLogo: React.FC<TextWithLogoProps> = ({ title, text, buttonAction, handleButton }) => {
 
     return (
         <Container sx={{
@@ -26,7 +27,7 @@ const TextWithLogo: React.FC<TextWithLogoProps> = ({ title, text, handleButton }
             <Typography variant='subtitle1' color='primary.light'>
                 {`${text}`}
             </Typography>
-            <NavigationButton text={'Começar'} onClick={handleButton} />
+            <NavigationButton text={`${buttonAction}`} onClick={handleButton} />
         </Container>
     );
 };
