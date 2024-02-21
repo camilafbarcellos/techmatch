@@ -29,6 +29,7 @@ const Results: React.FC = () => {
 
   const handleButton = () => {
     // Redirect to Google Forms 
+    window.open('https://www.google.com', '_blank');
   };
 
   // Effect that recovers the user answers on sessionStorage
