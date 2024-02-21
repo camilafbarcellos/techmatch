@@ -24,7 +24,7 @@ const TextWithLogo: React.FC<TextWithLogoProps> = ({ title, text, buttonAction, 
                 <span style={{ color: '#FE7E15' }}>_</span>
                 &nbsp; {`${title}`}
             </Typography>
-            <Typography variant='subtitle1' color='primary.light'>
+            <Typography variant='subtitle1' color='primary.light' width='80%'>
                 {`${text}`}
             </Typography>
             {handleButton && (
