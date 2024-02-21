@@ -25,7 +25,7 @@ const Home: React.FC = () => {
       <Header />
       <Box
         sx={{
-          my: 'auto', flexGrow: 1,
+          my: 'auto', flexGrow: 1, py: { xs: 2, md: 4 },
           display: 'flex', flexDirection: 'column',
           justifyContent: 'center', alignItems: 'center'
         }}

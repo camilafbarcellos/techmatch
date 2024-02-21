@@ -50,43 +50,44 @@ const Results: React.FC = () => {
 
   return (
     <Container
+      maxWidth='md'
       sx={{
-        display: 'flex', flexDirection: 'column', gap: '2rem',
-        minHeight: '100vh', px: { xs: 2, md: 4 }, maxWidth: 'md'
+        display: 'flex', flexDirection: 'column',
+        minHeight: '100vh', px: { xs: 2, md: 4 },
       }}
     >
       <Header />
       <Box
         sx={{
-          my: 'auto', flexGrow: 1,
-          display: 'flex', flexDirection: 'column',
-          justifyContent: 'center', alignItems: 'center'
+          my: 'auto', flexGrow: 1, py: { xs: 2, md: 4 },
+          display: 'flex', flexDirection: 'column', gap: '2rem',
+          justifyContent: 'center', alignItems: 'center',
         }}
       >
         <TextWithLogo title={title} text={text} />
-      </Box>
 
-      <Box sx={{
-        display: 'flex', alignItems: 'center', gap: '1rem', my: 'auto',
-        justifyContent: 'center', flexDirection: 'column',
-      }}>
-        <MainCircleProgress value={totalScore} text={`${totalScore}%`} />
-        <Typography variant='h4' fontWeight='600'>
-          TI
-        </Typography>
-      </Box>
+        <Box sx={{
+          display: 'flex', alignItems: 'center', gap: '1rem', my: 'auto',
+          justifyContent: 'center', flexDirection: 'column',
+        }}>
+          <MainCircleProgress value={totalScore} text={`${totalScore}%`} />
+          <Typography variant='h4' fontWeight='600'>
+            TI
+          </Typography>
+        </Box>
 
-      <Box sx={{
-        display: 'flex', alignItems: 'center', gap: '1rem', alignContent: 'center',
-        justifyContent: 'center', flexDirection: 'column',
-      }}>
-        <CategoryBox name='Desenvolvimento' percentage={categoryPercentage('Desenvolvimento')} />
-        <CategoryBox name='Infraestrutura de TI' percentage={categoryPercentage('Infraestrutura de TI')} />
-        <CategoryBox name='Ciência de Dados' percentage={categoryPercentage('Ciência de Dados')} />
-        <CategoryBox name='Cibersegurança' percentage={categoryPercentage('Cibersegurança')} />
-      </Box>
+        <Box sx={{
+          display: 'flex', alignItems: 'center', gap: '1rem', alignContent: 'center',
+          justifyContent: 'center', flexDirection: 'column',
+        }}>
+          <CategoryBox name='Desenvolvimento' percentage={categoryPercentage('Desenvolvimento')} />
+          <CategoryBox name='Infraestrutura de TI' percentage={categoryPercentage('Infraestrutura de TI')} />
+          <CategoryBox name='Ciência de Dados' percentage={categoryPercentage('Ciência de Dados')} />
+          <CategoryBox name='Cibersegurança' percentage={categoryPercentage('Cibersegurança')} />
+        </Box>
 
-      <NavigationButton text='Responder à pesquisa' onClick={handleButton} />
+        <NavigationButton text='Responder à pesquisa' onClick={handleButton} />
+      </Box>
       <Footer />
     </Container>
   );
