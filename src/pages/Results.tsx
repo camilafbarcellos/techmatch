@@ -18,12 +18,15 @@ const Results: React.FC = () => {
 
   const [totalScore, setTotalScore] = useState<number>(0);
   const [generalAnswers, setGeneralAnswers] = useState<Answer[]>([]);
+
   const categoryPercentage = (category: string) =>
     Math.round(calculateCategoryPercentage(generalAnswers, category));
+
   const navigate = useNavigate();
 
   const title: string = 'Eai, deu match?';
   const text: string = 'Este quiz aborda diferentes áreas da TI para identificar não só a sua afinidade com a Computação, mas também com as suas subáreas. Confira o seu resultado e conta para gente!';
+
   const handleButton = () => {
     // Redirect to Google Forms 
   };
