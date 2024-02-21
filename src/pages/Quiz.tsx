@@ -10,7 +10,6 @@ import { axiosRequest } from '../utils/axiosRequest';
 import LoadingCircle from '../components/LoadingCircle';
 import { Question } from '../types/question';
 import { Answer } from '../types/answer';
-import { filterAnswersByCategory } from '../utils/filterAnswersByCategory';
 import { shuffleArray } from '../utils/shuffleArray';
 import { useNavigate } from 'react-router-dom';
 
@@ -65,8 +64,7 @@ const Quiz: React.FC = () => {
   useEffect(() => {
     if (answers.length === questions.length && !loading) {
       // End of the quiz links to results page with the answers on sessionStorage
-      const answersByCategory = filterAnswersByCategory(answers);
-      sessionStorage.setItem('userAnswers', JSON.stringify(answersByCategory));
+      sessionStorage.setItem('userAnswers', JSON.stringify(answers));
       navigate('/results');
     }
   }, [answers, questions, loading, navigate]);
@@ -107,7 +105,7 @@ const Quiz: React.FC = () => {
         minHeight: '100vh', px: { xs: 2, md: 4 },
       }}
     >
-      <Header showLogo={true} />
+      <Header />
       <Box
         sx={{
           my: 'auto', flexGrow: 1, py: { xs: 2, md: 4 },
