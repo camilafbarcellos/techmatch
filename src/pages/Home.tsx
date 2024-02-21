@@ -30,7 +30,7 @@ const Home: React.FC = () => {
           justifyContent: 'center', alignItems: 'center'
         }}
       >
-        <TextWithLogo title={title} text={text} handleButton={handleButton} />
+        <TextWithLogo title={title} text={text} buttonAction='Começar' handleButton={handleButton} />
       </Box>
       <Footer />
     </Container>
