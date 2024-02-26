@@ -4,11 +4,7 @@ import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Answer } from '../types/answer';
-import {
-  calculateTotalScore,
-  calculateGeneralScore,
-  calculateCategoryPercentage,
-} from '../utils/matchingAlgorithm';
+import { calculateTotalScore, calculateCategoryPercentage, } from '../utils/matchingAlgorithm';
 import TextWithLogo from '../components/TextWithLogo';
 import MainCircleProgress from '../components/MainCircleProgress';
 import CategoryBox from '../components/CategoryBox';
@@ -16,11 +12,11 @@ import NavigationButton from '../components/NavigationButton';
 
 const Results: React.FC = () => {
 
+  const [answers, setAnswers] = useState<Answer[]>([]);
   const [totalScore, setTotalScore] = useState<number>(0);
-  const [generalAnswers, setGeneralAnswers] = useState<Answer[]>([]);
 
   const categoryPercentage = (category: string) =>
-    Math.round(calculateCategoryPercentage(generalAnswers, category));
+    Math.round(calculateCategoryPercentage(answers, category));
 
   const navigate = useNavigate();
 
@@ -40,12 +36,11 @@ const Results: React.FC = () => {
       navigate('/');
     }
     const parsedAnswers = JSON.parse(storedAnswers!) as Answer[];
+    setAnswers(parsedAnswers);
 
     // Calculate the scores
     const totalScore = calculateTotalScore(parsedAnswers);
-    setTotalScore(totalScore);
-    const generalAnswers = calculateGeneralScore(parsedAnswers);
-    setGeneralAnswers(generalAnswers);
+    setTotalScore(Math.round(totalScore));
   }, [navigate]);
 
   return (
