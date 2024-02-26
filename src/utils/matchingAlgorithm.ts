@@ -1,19 +1,19 @@
 import { Answer } from '../types/answer';
 
-// Função para calcular a pontuação total somando as pontuações de todas as categorias
+// Calculate the total score
 export const calculateTotalScore = (answers: Answer[]): number => {
-    return answers.reduce((totalScore, answer) => totalScore + answer.result, 0);
+    // Calculates the maximum possible score based on the size of the array and the maximum value of an answer
+    const maxPossibleScore = answers.length * 5;
+    // Calculates the totalScore by adding up the results of all the answers
+    const totalScore = answers.reduce((totalScore, answer) => totalScore + answer.result, 0);
+    // Returns the score in percentage
+    return (totalScore / maxPossibleScore) * 100;
 };
 
-// Função para calcular a pontuação geral da TI, excluindo a categoria 'Desafios da TI'
-export const calculateGeneralScore = (answers: Answer[]): Answer[] => {
-    return answers.filter(answer => answer.category !== 'Desafios');
-};
-
-// Função para calcular a porcentagem da pontuação de uma categoria em relação à afinidade total com a TI
+// Calculate the category score
 export const calculateCategoryPercentage = (answers: Answer[], category: string): number => {
+    // Filter out questions that don't belong to this category
     const categoryAnswers = answers.filter(answer => answer.category === category);
-    const categoryScore = calculateTotalScore(categoryAnswers);
-    const totalScore = calculateTotalScore(answers);
-    return (categoryScore / totalScore) * 100;
+    // Sends to the main function
+    return calculateTotalScore(categoryAnswers);
 };
