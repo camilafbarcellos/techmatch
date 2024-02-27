@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Alert, Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
@@ -6,16 +6,15 @@ import PaginationDots from '../components/PaginationDots';
 import LikertScale from '../components/LikertScale';
 import NextButton from '../components/NextButton';
 import Footer from '../components/Footer';
-import { axiosRequest } from '../utils/axiosRequest';
 import LoadingCircle from '../components/LoadingCircle';
-import { Question } from '../types/question';
 import { Answer } from '../types/answer';
 import { shuffleArray } from '../utils/shuffleArray';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 const Quiz: React.FC = () => {
 
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const { questions } = useContext(AppContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [selectedScale, setSelectedScale] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -23,38 +22,15 @@ const Quiz: React.FC = () => {
   const [scaleWarning, setScaleWarning] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Memoized function to fetch questions data from the API
-  const fetchData = useCallback(async () => {
-    try {
-      const { data } = await axiosRequest({ endpoint: 'questions', method: 'GET' });
-      return data;
-    } catch (error) {
-      // TO-DO: Handle the error appropriately
-      console.error('Error fetching questions:', error);
-      return null;
-    }
-  }, []);
-
-  // Memoized value to store the fetched data
-  const memoFetchData = useMemo(() => {
-    return fetchData();
-  }, [fetchData]);
+  // Effect to update the loading status
+  useEffect(() => {
+    setLoading(questions.length === 0);
+  }, [questions]);
 
   // Memoized value to store the shuffled array of questions
   const shuffledQuestions = useMemo(() => {
     return shuffleArray(questions);
-  }, [questions]);
-
-  // Effect to update the questions state and loading status
-  useEffect(() => {
-    memoFetchData.then((data: Question[]) => {
-      if (data) {
-        setQuestions(data);
-      }
-    }).finally(() => {
-      setLoading(false);
-    });
-  }, [memoFetchData]);
+  }, []);
 
   const handleScaleSelect = (scale: number) => {
     setSelectedScale(scale);
