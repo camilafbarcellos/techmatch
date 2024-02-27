@@ -34,8 +34,9 @@ const Results: React.FC = () => {
     // In case of any answers, redirect to home page
     if (!storedAnswers) {
       navigate('/');
+      return;
     }
-    const parsedAnswers = JSON.parse(storedAnswers!) as Answer[];
+    const parsedAnswers = JSON.parse(storedAnswers) as Answer[];
     setAnswers(parsedAnswers);
 
     // Calculate the scores
