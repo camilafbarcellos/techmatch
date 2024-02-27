@@ -10,7 +10,7 @@ const LaptopImage: React.FC<LaptopImageProps> = ({ className = '' }) => {
         <img
             className={`${className}`}
             alt='Laptop with code and coffee'
-            src={require('../assets/images/laptop.png')}
+            src={require('../assets/images/laptop.webp')}
         />
     );
 };

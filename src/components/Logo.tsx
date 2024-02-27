@@ -10,7 +10,7 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
         <img
             className={`${className}`}
             alt='TechMatch Logo'
-            src={require('../assets/images/logo.png')}
+            src={require('../assets/images/logo.webp')}
         />
     );
 };
