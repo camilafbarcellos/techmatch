@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Answer } from '../types/answer';
 import { calculateTotalScore, calculateCategoryPercentage, } from '../utils/matchingAlgorithm';
-import TextWithLogo from '../components/TextWithLogo';
+import ImageTextButton from '../components/ImageTextButton';
 import MainCircleProgress from '../components/MainCircleProgress';
 import CategoryBox from '../components/CategoryBox';
 import NavigationButton from '../components/NavigationButton';
@@ -59,7 +59,7 @@ const Results: React.FC = () => {
           justifyContent: 'center', alignItems: 'center',
         }}
       >
-        <TextWithLogo title={title} text={text} />
+        <ImageTextButton title={title} text={text} />
 
         <Box sx={{
           display: 'flex', alignItems: 'center', gap: '1rem', my: 'auto',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Typography } from '@mui/material';
-import Logo from './Logo';
 import NavigationButton from './NavigationButton';
-import '../assets/styles/logo.css';
+
+import LaptopImage from './LaptopImage';
 
 interface TextWithLogoProps {
     title: string;
@@ -18,7 +18,7 @@ const TextWithLogo: React.FC<TextWithLogoProps> = ({ title, text, buttonAction, 
             flexGrow: '1', display: 'flex', gap: '2rem', textAlign: 'center',
             flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
         }}>
-            <Logo className='large-logo' />
+            <LaptopImage className='laptop-image'/>
             <Typography variant='h3' fontFamily='Comfortaa' fontWeight='700' component='div' >
                 <span style={{ color: '#430F7E' }}>&gt;</span>
                 <span style={{ color: '#FE7E15' }}>_</span>

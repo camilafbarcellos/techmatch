@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import TextWithLogo from '../components/TextWithLogo';
+import ImageTextButton from '../components/ImageTextButton';
 import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
           justifyContent: 'center', alignItems: 'center'
         }}
       >
-        <TextWithLogo title={title} text={text} buttonAction='Começar' handleButton={handleButton} />
+        <ImageTextButton title={title} text={text} buttonAction='Começar' handleButton={handleButton} />
       </Box>
       <Footer />
     </Container>
