@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Box, Typography } from '@mui/material';
 import Logo from './Logo';
-import '../assets/styles/logo.css';
 import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
