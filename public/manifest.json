@@ -1,6 +1,6 @@
 {
-  "short_name": "techmatch",
-  "name": "techmatch - quiz de afinidade com TI",
+  "short_name": "TechMatch",
+  "name": "TechMatch | Quiz de afinidade com TI",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
