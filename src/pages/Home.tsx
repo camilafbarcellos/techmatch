@@ -3,8 +3,15 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ImageTextButton from '../components/ImageTextButton';
 import { useNavigate } from 'react-router-dom';
+import useDocumentTitle from '../utils/useDocumentTitle';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  pageTitle: string;
+}
+
+const Home: React.FC<HomeProps> = ({ pageTitle }) => {
+
+  useDocumentTitle(`TechMatch | ${pageTitle}`);
 
   const title: string = 'Você dá match com a Computação?';
   const text: string = 'Será que a TI é a sua praia? A falta de afinidade com a área pode até mesmo levar à evasão! Faça o teste e descubra se você tem o perfil ideal para embarcar nessa carreira!';

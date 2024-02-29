@@ -11,8 +11,15 @@ import { Answer } from '../types/answer';
 import { shuffleArray } from '../utils/shuffleArray';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
+import useDocumentTitle from '../utils/useDocumentTitle';
 
-const Quiz: React.FC = () => {
+interface QuizProps {
+  pageTitle: string;
+}
+
+const Quiz: React.FC<QuizProps> = ({ pageTitle }) => {
+
+  useDocumentTitle(`TechMatch | ${pageTitle}`);
 
   const { questions } = useContext(AppContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);

@@ -9,8 +9,15 @@ import ImageTextButton from '../components/ImageTextButton';
 import MainCircleProgress from '../components/MainCircleProgress';
 import CategoryBox from '../components/CategoryBox';
 import NavigationButton from '../components/NavigationButton';
+import useDocumentTitle from '../utils/useDocumentTitle';
 
-const Results: React.FC = () => {
+interface ResultsProps {
+  pageTitle: string;
+}
+
+const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
+
+  useDocumentTitle(`TechMatch | ${pageTitle}`);
 
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [totalScore, setTotalScore] = useState<number>(0);
