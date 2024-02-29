@@ -11,6 +11,7 @@ const LaptopImage: React.FC<LaptopImageProps> = ({ className = '' }) => {
             className={`${className}`}
             alt='Laptop with code and coffee'
             src={require('../assets/images/laptop.webp')}
+            rel='preload' fetchPriority='high'
         />
     );
 };
