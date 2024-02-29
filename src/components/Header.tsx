@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   return (
-    <AppBar position='static' sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+    <AppBar position='static' sx={{ backgroundColor: 'transparent', boxShadow: 'none', mt: -0.5 }}>
       <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Box component={Link} to='/' sx={{ alignItems: 'center' }}>
           <Logo className='header-logo' />
