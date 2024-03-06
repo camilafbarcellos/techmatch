@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Typography } from '@mui/material';
-import NavigationButton from './NavigationButton';
+import ActionButton from './ActionButton';
 
 import LaptopImage from './LaptopImage';
 
@@ -28,7 +28,7 @@ const TextWithLogo: React.FC<TextWithLogoProps> = ({ title, text, buttonAction, 
                 {`${text}`}
             </Typography>
             {handleButton && (
-                <NavigationButton text={`${buttonAction}`} onClick={handleButton} />
+                <ActionButton text={`${buttonAction}`} onClick={handleButton} />
             )}
         </Container>
     );

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 
-interface NavigationButtonProps {
+interface ActionButtonProps {
   text: string;
   onClick?: () => void;
 }
 
-const NavigationButton: React.FC<NavigationButtonProps> = ({ text, onClick }) => {
+const ActionButton: React.FC<ActionButtonProps> = ({ text, onClick }) => {
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Button variant='contained' color='secondary' onClick={onClick}>
@@ -16,4 +16,4 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({ text, onClick }) =>
   );
 };
 
-export default NavigationButton;
+export default ActionButton;
