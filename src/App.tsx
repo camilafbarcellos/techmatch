@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const value = useMemo(() => ({ questions }), [questions]);
 
