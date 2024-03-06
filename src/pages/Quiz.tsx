@@ -100,8 +100,8 @@ const Quiz: React.FC<QuizProps> = ({ pageTitle }) => {
           <LoadingCircle />
         ) : (
           <>
-            <PaginationDots totalDots={shuffledQuestions.length} currentDot={currentQuestionIndex} />
-            <QuestionCard question={questions[currentQuestionIndex].question} />
+            <PaginationDots totalDots={questions.length} currentDot={currentQuestionIndex} />
+            <QuestionCard question={shuffledQuestions[currentQuestionIndex].question} />
             <LikertScale onChange={handleScaleSelect} selectedScale={selectedScale} />
 
             {scaleWarning && (
