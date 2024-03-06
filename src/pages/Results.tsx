@@ -2,14 +2,15 @@ import { Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { Answer } from '../types/answer';
 import { calculateTotalScore, calculateCategoryPercentage, } from '../utils/matchingAlgorithm';
 import ImageTextButton from '../components/ImageTextButton';
 import MainCircleProgress from '../components/MainCircleProgress';
 import CategoryBox from '../components/CategoryBox';
-import NavigationButton from '../components/NavigationButton';
+import ActionButton from '../components/ActionButton';
 import useDocumentTitle from '../utils/useDocumentTitle';
+import { useScreenshot, createFileName } from 'use-react-screenshot';
 
 interface ResultsProps {
   pageTitle: string;
@@ -18,6 +19,7 @@ interface ResultsProps {
 const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
 
   useDocumentTitle(`TechMatch | ${pageTitle}`);
+  const ref = createRef();
 
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [totalScore, setTotalScore] = useState<number>(0);
@@ -51,6 +53,22 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
     setTotalScore(Math.round(totalScore));
   }, [navigate]);
 
+  // Screenshot related
+  const [image, takeScreenshot] = useScreenshot({
+    type: 'image/jpeg',
+    quality: 1.0
+  });
+
+  // Download screenshot
+  const download = (image: any, { name = 'techmatch-results', extension = 'jpg' } = {}) => {
+    const a = document.createElement('a');
+    a.href = image;
+    a.download = createFileName(extension, name);
+    a.click();
+  };
+
+  const downloadScreenshot = () => takeScreenshot(ref.current).then(download);
+
   return (
     <Container
       maxWidth='md'
@@ -65,8 +83,7 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
           my: 'auto', flexGrow: 1, py: { xs: 2, md: 4 },
           display: 'flex', flexDirection: 'column', gap: '2rem',
           justifyContent: 'center', alignItems: 'center',
-        }}
-      >
+        }} ref={ref}>
         <ImageTextButton title={title} text={text} />
 
         <Box sx={{
@@ -88,8 +105,16 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
           <CategoryBox name='Ciência de Dados' percentage={categoryPercentage('Ciência de Dados')} />
           <CategoryBox name='Cibersegurança' percentage={categoryPercentage('Cibersegurança')} />
         </Box>
+      </Box>
 
-        <NavigationButton text='Responder à pesquisa' onClick={handleButton} />
+      <Box
+        sx={{
+          pb: { xs: 2, md: 4 },
+          display: 'flex', flexDirection: 'row', gap: '1rem',
+          justifyContent: 'center', alignItems: 'center',
+        }}>
+        <ActionButton text='Salvar resultado' onClick={downloadScreenshot} />
+        <ActionButton text='Responder à pesquisa' onClick={handleButton} />
       </Box>
       <Footer />
     </Container>
