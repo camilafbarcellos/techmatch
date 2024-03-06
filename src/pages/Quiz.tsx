@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Alert, Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
@@ -8,7 +8,6 @@ import NextButton from '../components/NextButton';
 import Footer from '../components/Footer';
 import LoadingCircle from '../components/LoadingCircle';
 import { Answer } from '../types/answer';
-import { shuffleArray } from '../utils/shuffleArray';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import useDocumentTitle from '../utils/useDocumentTitle';
@@ -33,11 +32,6 @@ const Quiz: React.FC<QuizProps> = ({ pageTitle }) => {
   useEffect(() => {
     setLoading(questions.length === 0);
   }, [questions]);
-
-  // Memoized value to store the shuffled array of questions
-  const shuffledQuestions = useMemo(() => {
-    return shuffleArray(questions);
-  }, []);
 
   const handleScaleSelect = (scale: number) => {
     setSelectedScale(scale);
@@ -101,7 +95,7 @@ const Quiz: React.FC<QuizProps> = ({ pageTitle }) => {
         ) : (
           <>
             <PaginationDots totalDots={questions.length} currentDot={currentQuestionIndex} />
-            <QuestionCard question={shuffledQuestions[currentQuestionIndex].question} />
+            <QuestionCard question={questions[currentQuestionIndex].question} />
             <LikertScale onChange={handleScaleSelect} selectedScale={selectedScale} />
 
             {scaleWarning && (
