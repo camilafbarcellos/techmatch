@@ -10,7 +10,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({ name, percentage }) => {
     return (
         <Box display='flex' alignContent='center' justifyContent='center' width='80%'>
             <SecondaryCircleProgress value={percentage} text={`${percentage}%`} />
-            <Box ml={2} width='75%'>
+            <Box ml={2} width='80%'>
                 <Typography variant='h6' fontWeight='600'>
                     {name}
                 </Typography>
