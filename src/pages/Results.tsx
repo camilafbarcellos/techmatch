@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { createRef, useEffect, useState } from 'react';
 import { Answer } from '../types/answer';
 import { calculateTotalScore, calculateCategoryPercentage, } from '../utils/matchingAlgorithm';
-import ImageTextButton from '../components/ImageTextButton';
 import MainCircleProgress from '../components/MainCircleProgress';
 import CategoryBox from '../components/CategoryBox';
 import ActionButton from '../components/ActionButton';
 import useDocumentTitle from '../utils/useDocumentTitle';
 import { useScreenshot, createFileName } from 'use-react-screenshot';
+import Logo from '../components/Logo';
 
 interface ResultsProps {
   pageTitle: string;
@@ -28,9 +28,6 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
     Math.round(calculateCategoryPercentage(answers, category));
 
   const navigate = useNavigate();
-
-  const title: string = 'Eai, deu match?';
-  const text: string = 'Este quiz aborda diferentes áreas da TI para identificar não só a sua afinidade com a Computação, mas também com as suas subáreas. Confira o seu resultado e conta para gente!';
 
   const handleButton = () => {
     // Redirect to Google Forms 
@@ -54,10 +51,7 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
   }, [navigate]);
 
   // Screenshot related
-  const [image, takeScreenshot] = useScreenshot({
-    type: 'image/jpeg',
-    quality: 1.0
-  });
+  const [image, takeScreenshot] = useScreenshot();
 
   // Download screenshot
   const download = (image: any, { name = 'techmatch-results', extension = 'jpg' } = {}) => {
@@ -73,18 +67,34 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
     <Container
       maxWidth='md'
       sx={{
-        display: 'flex', flexDirection: 'column',
-        minHeight: '100vh', px: { xs: 2, md: 4 },
+        display: 'flex', flexDirection: 'column', gap: '1rem',
+        minHeight: '100vh', px: { xs: 2, md: 4 }, alignItems: 'center'
       }}
     >
       <Header />
-      <Box
-        sx={{
-          my: 'auto', flexGrow: 1, py: { xs: 2, md: 4 },
-          display: 'flex', flexDirection: 'column', gap: '2rem',
-          justifyContent: 'center', alignItems: 'center',
-        }} ref={ref}>
-        <ImageTextButton title={title} text={text} />
+
+      <Box sx={{
+        display: 'flex', alignItems: 'center', gap: '2rem', pt: '1rem',
+        justifyContent: 'center', flexDirection: 'column'
+      }} ref={ref}>
+
+
+        <Box sx={{
+          display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'center',
+          justifyContent: 'center', flexDirection: 'column'
+        }}>
+          <Logo className='large-logo' priority={true} />
+          <Typography variant='h3' fontFamily='Comfortaa' fontWeight='700' component='div' >
+            <span style={{ color: '#430F7E' }}>&gt;</span>
+            <span style={{ color: '#FE7E15' }}>_&nbsp;</span>
+            Eai, deu match?
+          </Typography>
+          <Typography variant='subtitle1' color='primary.light' width='80%'>
+            Este quiz aborda diferentes áreas da TI para identificar não só a sua afinidade
+            com a Computação, mas também com as suas subáreas.
+            Confira o seu resultado e conta para gente!
+          </Typography>
+        </Box>
 
         <Box sx={{
           display: 'flex', alignItems: 'center', gap: '1rem', my: 'auto',
@@ -108,14 +118,14 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
       </Box>
 
       <Box
-        sx={{
-          pb: { xs: 2, md: 4 },
-          display: 'flex', flexDirection: 'row', gap: '1rem',
-          justifyContent: 'center', alignItems: 'center',
-        }}>
-        <ActionButton text='Salvar resultado' onClick={downloadScreenshot} />
-        <ActionButton text='Responder à pesquisa' onClick={handleButton} />
-      </Box>
+          sx={{
+            display: 'flex', flexDirection: 'row', gap: '1rem',
+            justifyContent: 'center', alignItems: 'center', pb: '1rem'
+          }}>
+          <ActionButton text='Salvar resultado' onClick={downloadScreenshot} />
+          <ActionButton text='Responder à pesquisa' onClick={handleButton} />
+        </Box>
+
       <Footer />
     </Container>
   );
