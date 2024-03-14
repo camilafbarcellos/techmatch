@@ -5,11 +5,33 @@
 }
 
 .large-logo {
-    width: 8rem;
-    height: 8rem;
+    width: 100%;
+    max-width: 8rem;
+    height: auto;
 }
 
 .laptop-image {
-    width: 20rem;
-    height: 14rem;
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .large-logo {
+        max-width: 6rem;
+    }
+
+    .laptop-image {
+        max-width: 18rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .large-logo {
+        max-width: 5rem;
+    }
+
+    .laptop-image {
+        max-width: 14rem;
+    }
 }
