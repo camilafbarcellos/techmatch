@@ -1,16 +1,16 @@
+import { createRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useScreenshot, createFileName } from 'use-react-screenshot';
 import { Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
-import { createRef, useEffect, useState } from 'react';
-import { Answer } from '../types/answer';
-import { calculateTotalScore, calculateCategoryPercentage, } from '../utils/matchingAlgorithm';
 import MainCircleProgress from '../components/MainCircleProgress';
 import CategoryBox from '../components/CategoryBox';
 import ActionButton from '../components/ActionButton';
-import useDocumentTitle from '../utils/useDocumentTitle';
-import { useScreenshot, createFileName } from 'use-react-screenshot';
 import Logo from '../components/Logo';
+import { Answer } from '../types/answer';
+import useDocumentTitle from '../utils/useDocumentTitle';
+import { calculateTotalScore, calculateCategoryPercentage, } from '../utils/matchingAlgorithm';
 
 interface ResultsProps {
   pageTitle: string;

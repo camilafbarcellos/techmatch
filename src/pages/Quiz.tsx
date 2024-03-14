@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Alert, Box, Container, Typography } from '@mui/material';
 import Header from '../components/Header';
 import QuestionCard from '../components/QuestionCard';
@@ -8,7 +9,6 @@ import NextButton from '../components/NextButton';
 import Footer from '../components/Footer';
 import LoadingCircle from '../components/LoadingCircle';
 import { Answer } from '../types/answer';
-import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import useDocumentTitle from '../utils/useDocumentTitle';
 

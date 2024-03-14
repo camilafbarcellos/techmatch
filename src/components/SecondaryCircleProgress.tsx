@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import { Box } from '@mui/material';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 

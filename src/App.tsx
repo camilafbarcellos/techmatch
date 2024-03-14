@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import Router from './router/Router';
 import { ThemeProvider } from '@mui/material';
-import theme from './utils/MuiTheme';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import { Question } from './types/question';
+import Router from './router/Router';
 import { AppContext } from './context/AppContext';
+import { Question } from './types/question';
+import theme from './utils/MuiTheme';
 import { api } from './utils/api';
 
 const App: React.FC = () => {

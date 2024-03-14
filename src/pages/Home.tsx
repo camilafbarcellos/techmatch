@@ -1,8 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import { Box, Container, Typography } from '@mui/material';
+import useDocumentTitle from '../utils/useDocumentTitle';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
-import useDocumentTitle from '../utils/useDocumentTitle';
 import ActionButton from '../components/ActionButton';
 import LaptopImage from '../components/LaptopImage';
 
