@@ -90,8 +90,10 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
             Eai, deu match?
           </Typography>
           <Typography variant='subtitle1' color='primary.light' width='80%'>
-            Este quiz aborda diferentes áreas da TI para identificar não só a sua afinidade
-            com a Computação, mas também com as suas subáreas.
+            O <a style={{ color: '#430F7E', fontFamily: 'Comfortaa', fontWeight: '700' }}>tech</a>
+            <a style={{ color: '#FE7E15', fontFamily: 'Comfortaa', fontWeight: '700' }}>match </a> 
+            aborda diferentes setores da TI para identificar tanto a sua compatibilidade
+            geral com a área quanto com as suas subáreas específicas.
             Confira o seu resultado e conta para gente!
           </Typography>
         </Box>

@@ -42,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ pageTitle }) => {
         <Typography variant='subtitle1' color='primary.light' width='80%'>
           Será que a TI é a sua praia?
           A falta de afinidade com a área pode até mesmo levar à evasão!
-          Faça o teste e descubra se você tem o perfil ideal para embarcar nessa carreira!
+          Faça o teste e descubra se você tem o perfil ideal para embarcar nessa carreira.
         </Typography>
         <ActionButton text='Começar' onClick={handleActionClick} />
       </Box>
