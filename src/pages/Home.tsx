@@ -15,7 +15,7 @@ const Home: React.FC<HomeProps> = ({ pageTitle }) => {
   useDocumentTitle(`TechMatch | ${pageTitle}`);
 
   const navigate = useNavigate();
-  const handleButton = () => {
+  const handleActionClick = () => {
     navigate('/quiz');
   };
 
@@ -44,7 +44,7 @@ const Home: React.FC<HomeProps> = ({ pageTitle }) => {
           A falta de afinidade com a área pode até mesmo levar à evasão!
           Faça o teste e descubra se você tem o perfil ideal para embarcar nessa carreira!
         </Typography>
-        <ActionButton text='Começar' onClick={handleButton} />
+        <ActionButton text='Começar' onClick={handleActionClick} />
       </Box>
 
       <Footer />

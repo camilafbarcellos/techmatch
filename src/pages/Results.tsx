@@ -29,7 +29,7 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
 
   const navigate = useNavigate();
 
-  const handleButton = () => {
+  const handleFormClick = () => {
     // Redirect to Google Forms 
     window.open(process.env.REACT_APP_FORM_URL as string, '_blank');
   };
@@ -123,7 +123,7 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
             justifyContent: 'center', alignItems: 'center', pb: '1rem'
           }}>
           <ActionButton text='Salvar resultado' onClick={downloadScreenshot} />
-          <ActionButton text='Responder à pesquisa' onClick={handleButton} />
+          <ActionButton text='Responder à pesquisa' onClick={handleFormClick} />
         </Box>
 
       <Footer />
