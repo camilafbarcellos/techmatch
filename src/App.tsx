@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ThemeProvider } from '@mui/material';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import Router from './router/Router';
 import { AppContext } from './context/AppContext';
 import { Question } from './types/question';
@@ -24,7 +25,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const value = useMemo(() => ({ questions }), [questions]);
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
         <Router />
       </AppContext.Provider>
       <SpeedInsights />
+      <Analytics />
     </ThemeProvider>
   );
 };
