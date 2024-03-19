@@ -13,6 +13,9 @@
 The **API** of the application can be found at its [GitHub repository](https://github.com/camilafbarcellos/techmatch-api).
 > :rocket: Available online on [Render](https://techmatch-api.onrender.com)!
 
+<p align="center">
+    <img src="./src/assets/images/architecture.png" width=80%>
+</p>
 
 ## :heavy_check_mark: Features
 
