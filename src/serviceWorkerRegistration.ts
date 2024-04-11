@@ -76,7 +76,7 @@ function registerValidSW(swUrl: string, config?: Config) {
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'
               );
-              alert('Nova versão disponibilizada, reinicialize o aplicativo para habilitar!');
+              //alert('Nova versão disponibilizada, reinicialize o aplicativo para habilitar!');
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -87,7 +87,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
-              alert('Aplicativo habilitado para uso offline!');
+              //alert('Aplicativo habilitado para uso offline!');
 
               // Execute callback
               if (config && config.onSuccess) {
