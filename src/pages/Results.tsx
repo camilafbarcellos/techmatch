@@ -125,7 +125,7 @@ const Results: React.FC<ResultsProps> = ({ pageTitle }) => {
             justifyContent: 'center', alignItems: 'center', pb: '1rem'
           }}>
           <ActionButton text='Salvar resultado' onClick={downloadScreenshot} />
-          <ActionButton text='Responder à pesquisa' onClick={handleFormClick} />
+          <ActionButton text='Responder pesquisa' onClick={handleFormClick} />
         </Box>
 
       <Footer />
